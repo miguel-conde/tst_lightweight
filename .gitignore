@@ -2,3 +2,4 @@ jaxlib-0.4.11+cuda.cudnn89-cp311-cp311-win_amd64.whl
 .venv/
 PYTHON/prjpkg.egg-info/
 PYTHON/prjpkg/__pycache__/
+outputs/files/mmm_2
