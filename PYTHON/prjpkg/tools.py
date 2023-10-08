@@ -5,6 +5,42 @@ import pandas as pd
 import numpy as np
 import jax
 
+def highlight_variances(x: float, 
+                        low_variance_threshold: float=1.0e-3, 
+                        high_variance_threshold: float=3.0) -> str:
+
+    if x < low_variance_threshold or x > high_variance_threshold:
+      weight = 'bold'
+      color = 'red'
+    else:
+      weight = 'normal'
+      color = 'black'
+    style = f'font-weight: {weight}; color: {color}'
+    return style
+
+
+def highlight_low_spend_fractions(x: float,
+                                  low_spend_threshold: float=0.01) -> str:
+    if x < low_spend_threshold:
+      weight = 'bold'
+      color = 'red'
+    else:
+      weight = 'normal'
+      color = 'black'
+    style = f'font-weight: {weight}; color: {color}'
+    return style
+
+def highlight_high_vif_values(x: float,
+                              high_vif_threshold: float=7.0) -> str:
+    if x > high_vif_threshold:
+      weight = 'bold'
+      color = 'red'
+    else:
+      weight = 'normal'
+      color = 'black'
+    style = f'font-weight: {weight}; color: {color}'
+    return style
+
 def apply_exponent_safe(
     data: jnp.ndarray,
     exponent: jnp.ndarray
@@ -78,3 +114,5 @@ def adstock(data: jnp.ndarray,
       lambda adstock_values: adstock_values / (1. / (1 - lag_weight)),
       lambda adstock_values: adstock_values,
       operand=adstock_values)
+
+
